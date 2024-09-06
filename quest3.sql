@@ -38,3 +38,25 @@ INSERT INTO dados_diarios (dia, valor) VALUES (27, 25681.8318);
 INSERT INTO dados_diarios (dia, valor) VALUES (28, 1718.1221);
 INSERT INTO dados_diarios (dia, valor) VALUES (29, 13220.495);
 INSERT INTO dados_diarios (dia, valor) VALUES (30, 8414.61);
+
+SELECT * FROM dados_diarios;
+
+-- faturamento maximo, minimo e medio 
+SELECT 
+    AVG(valor) AS media, 
+    MIN(valor) AS minimo, 
+    MAX(valor) AS maximo 
+FROM dados_diarios;
+
+-- Contador de dias com zero
+SELECT COUNT(*) AS total_zeros,
+dia AS dias_com_zero 
+FROM dados_diarios 
+WHERE valor = 0
+GROUP BY dia;
+
+-- Dias com valor > media 
+SELECT * 
+FROM dados_diarios 
+WHERE valor > (SELECT AVG(valor) FROM dados_diarios);
+
